@@ -8,10 +8,10 @@ makeCacheMatrix <- function(x = matrix()) {      # the input should be a matrix
                                                  # every time makeCacheMatrix is called
         
         set <- function(new_matrix) {            # take an input matrix
-                x <<- new_matrix            # store the input matrix to the matrix object using superassignment
+                x <<- new_matrix                 # store the input matrix to the matrix object using superassignment
                 inv <<- NULL                     # reset the inverse to NULL
         }
-        get <- function() {x}               # return the value of the original matrix 
+        get <- function() {x}                    # return the value of the original matrix 
         set_inv <- function(inverse) {inv <<- inverse} 
                                                  # this is called by cacheSolve() during the first access and
                                                  # it will store the 'inverse' of the matrix using superassignment
@@ -27,7 +27,7 @@ makeCacheMatrix <- function(x = matrix()) {      # the input should be a matrix
 ## Return a matrix that is the inverse of 'x'
 cacheSolve <- function(x, ...) {               # the input is a matrix object created by makeCacheMatrix
         
-        inv <- x$get_inv()                # access the object and gets its inverse
+        inv <- x$get_inv()                     # access the object and gets its inverse
         
         if(!is.null(inv)){                     # if the inverse was cached (not NULL)
                 message("getting cached data") # send this message
@@ -36,6 +36,6 @@ cacheSolve <- function(x, ...) {               # the input is a matrix object cr
         
         data <- x$get()                                  
         inv <- solve(data, ...)                # if x$get_inv() returned NULL then the calculate the inverse
-        x$set_inv(inv)                    # store the calculated inverse in the matrix object
+        x$set_inv(inv)                         # store the calculated inverse in the matrix object
         inv                                    # return the inverse of the matrix to the code that called this function
 }
